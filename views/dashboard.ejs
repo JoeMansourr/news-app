@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/9e872d27fa.js" crossorigin="anonymous"></script>
+    <title>News Application</title>
+</head>
+<body>
+    <i class="fa-sharp fa-solid fa-bars menuToggle"></i>
+    <div class="menu">
+      <div class="menu-container">
+      <div class="menu-icon">
+      </div>
+        <div class="menu-category">
+          <ul>
+              <li><a href="/Popular">Popular</a></li>
+              <li><a href="/Sports">Sports</a></li>
+              <li><a href="/Politics">Politics</a></li>
+              <li><a href="/Trends">Trends</a></li>
+              <li><a href="/Videos">Videos</a></li>
+              <li><a href="/Business">Business</a></li>
+              <li><a href="/Science">Science</a></li>
+              <li><a href="/IT">IT</a></li>
+          </ul>
+          <form action="/search" method="POST">
+              <input type="search" name="searchInput" placeholder="Search" autocomplete="off">
+              <button type="submit"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
+          </form>      
+      </div>
+    </div>
+    </div>
+    <div class="container">
+    <div class="header">
+        <div class="title">
+            <h1><a href="/" style="cursor: pointer;">News</a></h1>
+        </div>
+        <div class="category">
+            <ul>
+                <li><a href="/Popular">Popular</a></li>
+                <li><a href="/Sports">Sports</a></li>
+                <li><a href="/Politics">Politics</a></li>
+                <li><a href="/Trends">Trends</a></li>
+                <li><a href="/Videos">Videos</a></li>
+                <li><a href="/Business">Business</a></li>
+                <li><a href="/Science">Science</a></li>
+                <li><a href="/IT">IT</a></li>
+            </ul>
+            <form action="/search" method="POST">
+                <input type="search" name="searchInput" placeholder="Search">
+                <button type="submit"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
+            </form>
+        </div>
+    </div>
+    <hr>
+
+    <div class="spinner"></div>
+
+    <div class="boxes">
+    <% getData.forEach((data) => { %>
+        <div class="news">
+            <div class="card">
+                <img src="<%= data.image %>" alt="News image" class="card-image">
+                    <div class="card-content">
+                        <h3 class="card-title"><%= data.title %></h3>
+                        <p class="card-description"><%= data.description.substring(0, 80) + " ..." %></p>
+                        <a href="<%= data.path %>" id="ReadMore" target="_blank">Read More</a>
+                    </div>
+            </div>
+        </div>
+        <% }); %>
+    </div>  
+</div>
+
+<script>
+    const boxes = document.querySelector('.boxes');
+    const spinner = document.querySelector('.spinner');
+
+    boxes.style.display = 'none';
+    spinner.style.display = 'block';
+
+    setTimeout(() => {
+        spinner.style.display = 'none';
+        boxes.style.display = 'grid';
+    }, 1500);
+
+    const menuIcon = document.querySelector('i.menuToggle');
+        const menuToggle = document.querySelector('.menu');
+
+        menuIcon.addEventListener('click', () => {
+          menuToggle.classList.toggle('active');
+        });
+</script>
+</body>
+<footer>
+    &copy; <script>document.write(new Date().getFullYear())</script>, News App - JoeM
+</footer>
+</html>
